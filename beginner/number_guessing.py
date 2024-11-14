@@ -1,24 +1,58 @@
 import random
 
-number_range = []
+answer = random.choice(range(1,101))
+easy_attempts = 10
+hard_attempts = 5
 
-create_range = int(input('Guessing range: '))
-for n in range(create_range + 1):
-    number_range.append(n)
+def easy_level(number):
+    """ Easy mode have 10 attempts and compare guess numb with answer """
+    global easy_attempts
+    if number > answer:
+        easy_attempts -= 1
+        print("Too high. Guess again")
+        print(f"You have {easy_attempts} attempts remaining to guess a number")
+    elif number < answer:
+        easy_attempts -= 1
+        print("Too low. Guess again")
+        print(f"You have {easy_attempts} attempts remaining to guess a number")
 
-random_number = random.choice(number_range)
-restart = True
+def hard_level(number):
+    """ Hard mode have 5 attempts and compare guess numb with answer """
+    global hard_attempts
+    if number > answer:
+        hard_attempts -= 1
+        print("Too high. Guess again")
+        print(f"You have {hard_attempts} attempts remaining to guess a number")
+    elif number < answer:
+        hard_attempts -= 1
+        print("Too low. Guess again")
+        print(f"You have {hard_attempts} attempts remaining to guess a number")
 
-while restart:
-    guess = int(input('Enter a number: '))
+def number_guessing_game():
+    print("Welcome to the Number guessing game")
+    print("I'm thinking of a number between 1 and 100")
+    game_level = input("Choose a difficulty. Type 'easy' or 'hard': ").lower()
+    guessing = True
+    # repeat guessing number until guess it right
+    while guessing:
 
-    if guess == random_number:
-        print('Awsome!!! you guessed right')
-        break
+        guess_a_number = int(input("Make a guess: "))
 
-    elif guess > len(number_range[1:11]):
-        print('Guess too high. Try again')
-    elif guess < 0:
-        print('Guess too low. Try again')
-    else:
-        print('Try again')
+        if game_level == 'easy':
+            easy_level(guess_a_number)
+
+            if easy_attempts == 0:
+                print("You've run out of guess. Refreshing the page to continue playing")
+                guessing = False
+        else:
+            hard_level(guess_a_number)
+
+            if hard_attempts == 0:
+                print("You've run out of guess. Refreshing the page to continue playing")
+                guessing = False
+
+        if guess_a_number == answer:
+            print(f"You guess right!!!. The answer is: {answer}")
+            guessing = False
+
+number_guessing_game()
