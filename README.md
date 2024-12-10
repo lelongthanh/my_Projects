@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Lê Long Thành</h1>
-<h3 align="center">A beginner software engineer looking for internship opportunities</h3>
+<h3 align="center">A fresher software engineer looking for job opportunities</h3>
 
 - 🔭 I’m currently working on [tdee_calculator](https://github.com/lelongthanh/tdee_calculator.git)
 
